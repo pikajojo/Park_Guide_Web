@@ -17,9 +17,9 @@ public class ParkMapper {
     public static Park mapToPark(ParkDto parkDto) {
         return new Park(
                 parkDto.getId(),
-                parkDto.getParkName(),
-                parkDto.getParkCountry(),
-                parkDto.getParkCity(),
+                parkDto.getName(),
+                parkDto.getCountry(),
+                parkDto.getCity(),
                 parkDto.getPrice(),
                 parkDto.getWebLink()
         );

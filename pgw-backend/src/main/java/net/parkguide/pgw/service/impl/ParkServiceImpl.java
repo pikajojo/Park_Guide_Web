@@ -69,9 +69,9 @@ public class ParkServiceImpl implements ParkService {
         Park park = parkRepository.findById(parkId).orElseThrow(
                 () -> new ResourceNotFoundException("Park is not found with given id: "+parkId)
         );
-        park.setName(updatedPark.getParkName());
-        park.setCountry(updatedPark.getParkCountry());
-        park.setCity(updatedPark.getParkCity());
+        park.setName(updatedPark.getName());
+        park.setCountry(updatedPark.getCountry());
+        park.setCity(updatedPark.getCity());
         park.setPrice(updatedPark.getPrice());
         park.setWebLink(updatedPark.getWebLink());
 

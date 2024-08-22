@@ -9,21 +9,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDto {
-
-
-    @NotBlank
-    private String username;
-
-    @NotBlank
-    @Email(message = "Email should be valid")
-    private String email;
-
-    @NotBlank
-    @Size(min = 6, message = "Password should have at least 6 characters")
-    private String password;
-}
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//public class UserDto {
+//
+//
+//    @NotBlank
+//    private String username;
+//
+//    @NotBlank
+//    @Email(message = "Email should be valid")
+//    private String email;
+//
+//    @NotBlank
+//    @Size(min = 6, message = "Password should have at least 6 characters")
+//    private String password;
+//}

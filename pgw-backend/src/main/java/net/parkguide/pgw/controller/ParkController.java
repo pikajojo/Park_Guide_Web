@@ -43,7 +43,7 @@ public class ParkController {
        return ResponseEntity.ok(parks);
     }
 
-    @GetMapping("/parks")
+    @GetMapping("/getparks")
     public ResponseEntity<List<ParkDto>> getParks(@RequestParam(required = false) String name,
                                @RequestParam(required = false) String city,
                                @RequestParam(required = false) String country
@@ -73,7 +73,7 @@ public class ParkController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletePark(@PathVariable("id") Long parkId){
         ParkDto parkDto = parkService.getParkById(parkId);
-        String parkname = parkDto.getParkName();
+        String parkname = parkDto.getName();
         parkService.deletePark(parkId);
         return  ResponseEntity.ok(parkname + " is deleted successfully!");
     }

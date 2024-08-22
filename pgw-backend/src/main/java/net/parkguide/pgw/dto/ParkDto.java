@@ -13,9 +13,9 @@ import lombok.Setter;
 
 public class ParkDto {
     private long id;
-    private String parkName;
-    private String parkCountry;
-    private String parkCity;
+    private String name;
+    private String country;
+    private String city;
     private long price;
     private String webLink;
 }
