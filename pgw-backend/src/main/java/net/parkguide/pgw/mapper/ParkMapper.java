@@ -7,9 +7,9 @@ public class ParkMapper {
     public static ParkDto mapToParkDto(Park park) {
         return new ParkDto(
                 park.getId(),
-                park.getParkName(),
-                park.getParkCountry(),
-                park.getParkCity(),
+                park.getName(),
+                park.getCountry(),
+                park.getCity(),
                 park.getPrice(),
                 park.getWebLink());
     }

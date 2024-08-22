@@ -42,6 +42,27 @@ public class ParkController {
        List<ParkDto> parks =  parkService.getAllParks();
        return ResponseEntity.ok(parks);
     }
+
+    @GetMapping("/parks")
+    public ResponseEntity<List<ParkDto>> getParks(@RequestParam(required = false) String name,
+                               @RequestParam(required = false) String city,
+                               @RequestParam(required = false) String country
+                              ) {
+        if (name != null) {
+            List<ParkDto> parks = parkService.getParkByName(name);
+            return ResponseEntity.ok(parks);
+        } else if (city != null) {
+            List<ParkDto> parks =parkService.getParkByCity(city);
+            return ResponseEntity.ok(parks);
+        } else if (country != null) {
+            List<ParkDto> parks = parkService.getParkByCountry(country);
+            return ResponseEntity.ok(parks);
+        } else {
+            // Return all parks or handle error
+            List<ParkDto> parks =parkService.getAllParks(); // 或者实现一个getAllParks()方法
+            return ResponseEntity.ok(parks);
+        }
+    }
     @PutMapping("{id}")
     public ResponseEntity<ParkDto> updatePark(@PathVariable("id") Long parkId,
                                               @RequestBody ParkDto updatedPark){

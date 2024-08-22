@@ -19,18 +19,19 @@ public class Park {
     private long id;
 
     @Column(name = "park_name")
-    public String parkName;
+    public String name;
 
     @Column(name = "park_country")
-    public String parkCountry;
+    public String country;
 
     @Column(name = "park_city")
-    public String parkCity;
+    public String city;
 
     @Column(name = "price")
     public long price;
 
     @Column(name = "web_link")
     public String webLink;
+
 
 }

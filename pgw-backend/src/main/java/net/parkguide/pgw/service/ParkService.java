@@ -12,6 +12,12 @@ public interface ParkService {
 
     ParkDto getParkById(Long parkId);
 
+    List<ParkDto> getParkByName(String name);
+
+    List<ParkDto> getParkByCity(String city);
+
+    List<ParkDto> getParkByCountry(String Country);
+
     List<ParkDto> getAllParks();
 
     ParkDto updatePark(Long parkId, ParkDto updatedPark);
