@@ -43,8 +43,8 @@ public class ParkController {
        return ResponseEntity.ok(parks);
     }
 
-    @GetMapping("/getparks")
-    public ResponseEntity<List<ParkDto>> getParks(@RequestParam(required = false) String name,
+    @GetMapping("/find/{name}")
+    public ResponseEntity<List<ParkDto>> getParks(@PathVariable("name") String name,
                                @RequestParam(required = false) String city,
                                @RequestParam(required = false) String country
                               ) {
