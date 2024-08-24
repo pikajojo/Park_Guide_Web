@@ -1,30 +1,19 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { listParks } from '../services/ParkService'
 
 const ListParkComponent = () => {
 
-const dummyData = [
-   {"id":1,
-    "name": "Botany Park",
-    "country": "China",
-    "city": "Jinan",
-    "price": "0",
-    "webLink":"ddd",
-   } ,
-   {"id":2,
-    "name": "Animal Park",
-    "country": "China",
-    "city": "Jinan",
-    "price": "0",
-    "webLink":"ddd",
-   } ,
-   {"id":3,
-    "name": "Forest Park",
-    "country": "China",
-    "city": "Jinan",
-    "price": "0",
-    "webLink":"ddd",
-   } ,
-]
+const [parks, setParks] = useState([])
+
+useEffect( () => {
+    listParks().then( (response) =>{
+        setParks(response.data);
+}).catch((error) => {
+    console.error(error);
+})
+
+}, [])
+   
 
 
 return (
@@ -44,7 +33,7 @@ return (
             </thead>
 
             <tbody>
-                {dummyData.map(park => 
+                {parks.map(park => 
                     <tr key={park.id}>
                         <td>{park.id}</td>
                         <td>{park.name}</td>
