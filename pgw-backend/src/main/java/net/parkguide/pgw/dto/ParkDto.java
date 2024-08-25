@@ -17,5 +17,5 @@ public class ParkDto {
     private String country;
     private String city;
     private long price;
-    private String webLink;
+    private String weblink;
 }

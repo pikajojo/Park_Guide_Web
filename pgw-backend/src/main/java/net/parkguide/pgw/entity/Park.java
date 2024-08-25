@@ -31,7 +31,7 @@ public class Park {
     public long price;
 
     @Column(name = "web_link")
-    public String webLink;
+    public String weblink;
 
 
 }

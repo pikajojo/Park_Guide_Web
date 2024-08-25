@@ -1,6 +1,7 @@
 package net.parkguide.pgw.controller;
 
 
+import lombok.AllArgsConstructor;
 import net.parkguide.pgw.dto.ParkDto;
 import net.parkguide.pgw.service.ParkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/parks")
 public class ParkController {
 
     private final ParkService parkService;
 
-    // dependency injection of ParkService
-    public ParkController(ParkService parkService) {
-        this.parkService = parkService;
-    }
 
     //Build Add Park Rest API
     @PostMapping

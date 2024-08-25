@@ -11,7 +11,7 @@ public class ParkMapper {
                 park.getCountry(),
                 park.getCity(),
                 park.getPrice(),
-                park.getWebLink());
+                park.getWeblink());
     }
 
     public static Park mapToPark(ParkDto parkDto) {
@@ -21,7 +21,7 @@ public class ParkMapper {
                 parkDto.getCountry(),
                 parkDto.getCity(),
                 parkDto.getPrice(),
-                parkDto.getWebLink()
+                parkDto.getWeblink()
         );
     }
 }

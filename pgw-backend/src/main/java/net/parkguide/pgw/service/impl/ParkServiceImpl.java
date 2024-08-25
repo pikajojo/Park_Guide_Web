@@ -73,7 +73,7 @@ public class ParkServiceImpl implements ParkService {
         park.setCountry(updatedPark.getCountry());
         park.setCity(updatedPark.getCity());
         park.setPrice(updatedPark.getPrice());
-        park.setWebLink(updatedPark.getWebLink());
+        park.setWeblink(updatedPark.getWeblink());
 
         Park updatedParkObj = parkRepository.save(park);
 

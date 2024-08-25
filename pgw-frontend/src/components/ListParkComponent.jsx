@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { listParks } from '../services/ParkService'
+import { useNavigate } from 'react-router-dom'
 
 const ListParkComponent = () => {
 
 const [parks, setParks] = useState([])
+const navigator  = useNavigate();
 
 useEffect( () => {
     listParks().then( (response) =>{
@@ -13,12 +15,20 @@ useEffect( () => {
 })
 
 }, [])
+
+
+function addNewPark()  {
+
+    return navigator('/add-park');
+
+}
    
 
 
 return (
     <div className='container'>
         <h2 className='text-center'>List of Parks</h2>
+        <button className="btn btn-outline-info mb-2" onClick={addNewPark}>Add Park</button>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
@@ -40,7 +50,7 @@ return (
                         <td>{park.country}</td>
                         <td>{park.city}</td>
                         <td>{park.price}</td>
-                        <td>{park.webLink}</td>
+                        <td>{park.weblink}</td>
                     </tr>
                 )}
             </tbody>
