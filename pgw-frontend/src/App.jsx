@@ -32,6 +32,10 @@ function App() {
 
       {/* //http://localhost/3000/add-park */}
       <Route path='/add-park' element= {<ParkComponent />}>
+      </Route>
+
+      {/* //http://localhost/3000/edit-park/{id} */}
+      <Route path='/edit-park/:id' element= {<ParkComponent />}>
 
       </Route>
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { createPark } from '../services/ParkService'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { createPark, getPark, updatePark } from '../services/ParkService'
+import { useNavigate, useParams } from 'react-router-dom'
+//useParams is for getting parameters from the url
 
 const ParkComponent = () => {
   const[name, setName] = useState('')
@@ -11,6 +12,8 @@ const ParkComponent = () => {
 
   const navigator = useNavigate();
 
+  const{ id } = useParams();
+
   const[errors, setErrors] = useState(
     {
       name:'',
@@ -18,6 +21,38 @@ const ParkComponent = () => {
       city:''
     }
   )
+
+  useEffect(() =>{
+
+    if(id){
+      getPark(id)
+      .then(
+        (response) =>{
+          setName(response.data.name);
+          setCountry(response.data.country);
+          setCity(response.data.city);
+          setPrice(response.data.price);
+          setWeblink(response.data.weblink);
+        }
+      )
+
+    }
+    
+
+  },[id]);
+
+
+
+
+
+  function pageTitle(){
+    if(id){
+      return <h2 className='text-center'>Update the Park you like to go</h2>
+    }
+    else{
+      <h2 className='text-center'>Add Park you like to go</h2>
+    }
+  }
 
   function validateForm(){
     let valid = true;
@@ -53,29 +88,35 @@ const ParkComponent = () => {
   }
 
 
-
-
-  function savePark(e){
+  function saveOrUpdatePark(e){
     e.preventDefault();
-
-    if(validateForm){
 
     const park = {name, country, city, price ,weblink}
 
-    createPark(park)
-    .then((response)=>{
+    if(validateForm()){
 
-      console.log(response.data);
-      navigator('/parks')
-
-    })
-
-    }
-
+      if(id){
+        updatePark(id, park)
+        .then((response)=>{
+          console.log(response.data);
+          navigator('/parks');
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+      }else{
+        createPark(park)
+        .then((response)=>{
     
-   
+          console.log(response.data);
+          navigator('/parks')
+        })
+        .catch((error) =>{
+          console.error(error);
+        })
+      }
 
-    
+  }
 
   }
 
@@ -89,7 +130,10 @@ const ParkComponent = () => {
       <br />
       <div className='row'>
         <div className='card col-md-6 offset-md-3 offset-md-3' >
-        <h2 className='text-center'>Add Park you like to go</h2>
+          {
+            pageTitle()
+          }
+        
         <div className='card-body'>
           <form>
             <div className='form-group mb-2'>
@@ -99,23 +143,33 @@ const ParkComponent = () => {
               // the value here need to be the same as the first parameter in the useState
               value={name}
               placeholder='Enter the park name here'
-              className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+              className={`form-control ${errors.name ? 'is-invalid' : ''}`}
 
               onChange={(e) => setName(e.target.value)}/>
+              {errors.name && <div className='invalid-feedback'>{errors.name}</div>}
+
               <label className='form-label'>Country</label>
               <input type="text"
               name='country' 
               value={country}
               placeholder='Enter the park country here'
-              className='form-control'
+              className={`form-control ${errors.country ? 'is-invalid' : ''}`}
               onChange={(e)=>setCountry(e.target.value)}/>
+              {errors.country && <div className='invalid-feedback'>{errors.country}</div>}
+
+
+
               <label className='form-label'>City</label>
               <input type="text"
               name='city' 
               value={city}
               placeholder='Enter the park city here'
-              className='form-control'
+              className={`form-control ${errors.city ? 'is-invalid' : ''}`}
               onChange={(e)=>setCity(e.target.value)}/>
+              {errors.city && <div className='invalid-feedback'>{errors.city}</div>}
+
+
+
               <label className='form-label'>Price</label>
               <input type="number"
               step="0.01"
@@ -124,6 +178,8 @@ const ParkComponent = () => {
               placeholder='Enter the park price here'
               className='form-control'
               onChange={(e)=>setPrice(e.target.value)}/>
+
+
               <label className='form-label'>Weblink</label>
               <input type="text"
               name='weblink' 
@@ -136,7 +192,7 @@ const ParkComponent = () => {
             </div>
           </form>
 
-          <button className='btn btn-success' onClick = {savePark}>Submit</button>
+          <button className='btn btn-success' onClick = {saveOrUpdatePark}>Submit</button>
 
 
         </div>
