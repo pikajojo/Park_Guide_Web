@@ -3,12 +3,17 @@ package net.parkguide.pgw.config;
 
 import lombok.RequiredArgsConstructor;
 import net.parkguide.pgw.repository.UserRepository;
+import net.parkguide.pgw.service.AuthenticationService;
+import net.parkguide.pgw.service.JwtService;
+import net.parkguide.pgw.service.impl.AuthenticationServiceImpl;
+import net.parkguide.pgw.service.impl.JwtServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -46,4 +51,14 @@ public class ApplicationConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public JwtService jwtService() {
+//        return new JwtServiceImpl();
+//    }
+
+//    @Bean
+//    public AuthenticationService authenticationService() {
+//        return new AuthenticationServiceImpl(userRepository, passwordEncoder(), jwtService(), authenticationManager);
+//    }
 }

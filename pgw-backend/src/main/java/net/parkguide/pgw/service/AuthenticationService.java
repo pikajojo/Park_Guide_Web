@@ -8,10 +8,9 @@ import net.parkguide.pgw.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public interface AuthenticationService {
 
-    public AuthenticationResponse register(RegisterRequest request);
+    AuthenticationResponse register(RegisterRequest request);
 
     AuthenticationResponse authenticate(AuthenticationRequest request);
 }

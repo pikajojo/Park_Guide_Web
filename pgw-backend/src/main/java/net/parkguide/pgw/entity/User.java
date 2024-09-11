@@ -34,8 +34,14 @@ public class User implements UserDetails {
     @Column(name = "user_email", nullable=false,  unique=true)
     public String userEmail;
 
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(nullable = true)
+    private Boolean enabled = false; // 默认值为false
+
+
 
 //    @Column(name = "user_avatar_path")  // Store User Avatar Path
 //    private String userAvatarPath;

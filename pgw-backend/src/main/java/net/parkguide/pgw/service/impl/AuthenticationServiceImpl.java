@@ -1,5 +1,8 @@
 package net.parkguide.pgw.service.impl;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import net.parkguide.pgw.config.AuthenticationRequest;
 import net.parkguide.pgw.config.AuthenticationResponse;
@@ -14,7 +17,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+@Service
+@AllArgsConstructor
+
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -28,6 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .userEmail(request.getUserEmail())
                 .userPassword(passwordEncoder.encode(request.getUserPassword()))
                 .role(Role.USER)
+                .enabled(false)
                 .build();
 
         userRepository.save(user);

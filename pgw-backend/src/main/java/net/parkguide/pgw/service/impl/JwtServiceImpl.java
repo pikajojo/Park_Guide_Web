@@ -7,6 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import net.parkguide.pgw.service.JwtService;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Base64;
@@ -15,9 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+
+@Service
 public class JwtServiceImpl implements JwtService {
 
-    private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+//    private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
     @Override
     public String extractUserName(String token) {
 
@@ -35,7 +38,7 @@ public class JwtServiceImpl implements JwtService {
         return userName.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
